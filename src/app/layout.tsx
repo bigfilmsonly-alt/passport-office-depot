@@ -43,6 +43,25 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Passport Office Depot',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 1200,
+        alt: 'The POD — Passport Office Depot',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Passport Office Depot | Fast & Affordable Passport & Visa Expediting Since 1976',
+    description: "America's most affordable passport & visa expediting service. BBB A+ rated, 99.8% success rate.",
+    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: '/pod-logo.png',
+    apple: '/pod-logo.png',
   },
 };
 
