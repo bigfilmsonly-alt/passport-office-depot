@@ -1,7 +1,6 @@
 import { HeroSection } from '@/components/home/HeroSection';
 import { TrustBar } from '@/components/home/TrustBar';
 import { ValuePropSection } from '@/components/home/ValuePropSection';
-import { AICardSection } from '@/components/home/AICardSection';
 import { GuaranteeSection } from '@/components/home/GuaranteeSection';
 import { PriceCompareSection } from '@/components/home/PriceCompareSection';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
@@ -17,7 +16,6 @@ export default function HomePage() {
       <HeroSection />
       <TrustBar />
       <ValuePropSection />
-      <AICardSection />
       <GuaranteeSection />
       <PriceCompareSection />
       <ReviewsSection />
