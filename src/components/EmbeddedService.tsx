@@ -24,12 +24,14 @@ export function EmbeddedService({ title, subtitle, services, defaultEmbedUrl }: 
   const handleOpen = (svc: ServiceItem) => {
     setActiveUrl(svc.embedUrl);
     setActiveTitle(svc.title);
+    document.body.classList.add('embedded-active');
     window.scrollTo({ top: 0 });
   };
 
   const handleBack = () => {
     setActiveUrl(null);
     setActiveTitle('');
+    document.body.classList.remove('embedded-active');
     window.scrollTo({ top: 0 });
   };
 
@@ -110,7 +112,7 @@ export function EmbeddedService({ title, subtitle, services, defaultEmbedUrl }: 
         {/* Quick start */}
         <div className="pt-3">
           <button
-            onClick={() => { setActiveUrl(defaultEmbedUrl); setActiveTitle('Get Started — TripBuilder'); window.scrollTo({ top: 0 }); }}
+            onClick={() => { setActiveUrl(defaultEmbedUrl); setActiveTitle('Get Started — TripBuilder'); document.body.classList.add('embedded-active'); window.scrollTo({ top: 0 }); }}
             className="w-full py-3.5 bg-red text-white font-semibold rounded-2xl text-sm shadow-lg shadow-red/30 active:scale-[0.97] transition-transform flex items-center justify-center gap-2"
           >
             Get Started Now

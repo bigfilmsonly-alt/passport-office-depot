@@ -22,11 +22,21 @@ const FALLBACK_MESSAGE = "I'm having trouble connecting right now. Please try ag
 
 export function AIAssistant() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Hide when an embedded ItsEasy page is active (they have their own chat)
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setHidden(document.body.classList.contains('embedded-active'));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -72,6 +82,9 @@ export function AIAssistant() {
     setOpen(true);
     trackEvent('assistant_opened');
   };
+
+  // Don't render when ItsEasy embedded page is open (they have their own Tawk chat)
+  if (hidden) return null;
 
   return (
     <>
