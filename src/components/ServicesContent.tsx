@@ -59,7 +59,7 @@ export function ServicesContent() {
           {PASSPORT_SERVICES.map((svc) => (
             <Link
               key={svc.id}
-              href="/apply"
+              href="/documents"
               className="flex items-center gap-3 bg-white rounded-2xl border border-line p-4 shadow-sm active:scale-[0.98] transition-transform"
             >
               <span className="text-2xl">{svc.icon}</span>
@@ -89,10 +89,10 @@ export function ServicesContent() {
             Immediate digital photos, professionally edited via our app, or shipped to you. Standalone available.
           </p>
           <Link
-            href="/apply"
+            href="/photos"
             className="inline-flex px-5 py-2.5 bg-green text-white font-semibold rounded-xl text-sm active:scale-95 transition-transform"
           >
-            Get Started
+            Get Passport Photos
           </Link>
         </div>
       </div>
@@ -133,7 +133,7 @@ export function ServicesContent() {
       {/* Bottom CTA */}
       <div className="px-5 pt-8">
         <Link
-          href="/apply"
+          href="/documents"
           className="flex items-center justify-center w-full py-3.5 bg-red text-white font-semibold rounded-2xl text-sm shadow-lg shadow-red/30 active:scale-[0.97] transition-transform"
         >
           Start Your Application Now

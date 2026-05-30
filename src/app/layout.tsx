@@ -3,7 +3,6 @@ import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { BottomTabBar } from '@/components/BottomTabBar';
 import { AIAssistant } from '@/components/AIAssistant';
-import { SocialProofToast } from '@/components/SocialProofToast';
 import { AnalyticsProvider } from '@/components/AnalyticsProvider';
 
 const fraunces = Fraunces({
@@ -81,7 +80,6 @@ export default function RootLayout({
         <div className="mx-auto max-w-[430px] min-h-screen relative bg-paper shadow-2xl">
           <main className="pb-safe">{children}</main>
           <AIAssistant />
-          <SocialProofToast />
           <BottomTabBar />
           {/* Home indicator */}
           <div className="fixed bottom-1 left-1/2 -translate-x-1/2 w-[134px] h-[5px] bg-ink/20 rounded-full z-[60] max-w-[430px]" />
