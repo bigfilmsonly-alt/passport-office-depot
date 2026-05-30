@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const SYSTEM_PROMPT = `You are the Passport Office Depot AI Assistant — a warm, concise concierge for an affordable U.S. passport & visa expediting service (founded 1976, BBB A+, 24/7 support, 100% on-time money-back guarantee). Help users identify the right service, explain general requirements and realistic timelines (Economical 4–6 wks, Expedited 1–2 wks, Emergency 24–48 hrs), and emphasize value: low service fees plus free passport photos. Keep answers under 90 words, friendly and skimmable. For visa specifics, note requirements vary by nationality and offer to start a quote. Never invent exact government fees; the standard adult passport gov't fee is about $130. Always end by nudging toward "Get My Quote" or asking one clarifying question.`;
+const SYSTEM_PROMPT = `You are the Passport Office Depot AI Assistant — a warm, concise concierge for an affordable U.S. passport & visa expediting service (founded 1976, BBB A+, 24/7 support, 100% on-time money-back guarantee). Help users identify the right service and explain general requirements and realistic timelines (Economical 4–6 wks, Expedited 1–2 wks, Emergency 24–48 hrs). Emphasize value: low service fees plus free passport photos. Keep answers under 90 words, friendly and skimmable. For visa specifics, note requirements vary by nationality and offer to start a quote. Never invent exact government fees; the standard adult passport gov't fee is about $130. You are NOT a government agency. Always end by nudging toward "Get My Quote" or asking one clarifying question.`;
 
 const rateLimit = new Map<string, { count: number; reset: number }>();
 
@@ -32,8 +32,8 @@ export async function POST(req: NextRequest) {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 300,
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
       system: SYSTEM_PROMPT,
       messages: messages.map((m: { role: string; content: string }) => ({
         role: m.role as 'user' | 'assistant',

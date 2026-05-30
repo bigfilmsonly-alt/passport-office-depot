@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { BRAND, CEO, COO, COO_TITLE, YEARS_IN_BUSINESS, HQ_ADDRESS, PHONE, PHONE_TEL, GUARANTEE } from '@/lib/constants';
+import Image from 'next/image';
+import { BRAND, CEO, COO, COO_TITLE, HQ_ADDRESS, PHONE, PHONE_TEL, GUARANTEE } from '@/lib/constants';
+import { STATS } from '@/lib/stats';
 import { trackEvent } from '@/lib/track';
 
 type FaqItem = { q: string; a: string };
@@ -16,7 +18,7 @@ export function AboutContent({ faqItems }: { faqItems: FaqItem[] }) {
           About Us
         </h1>
         <p className="text-center text-white/60 text-sm">
-          Trusted since 1976 · {YEARS_IN_BUSINESS} years of service
+          {STATS.foundedPhrase} · {STATS.yearsInBusiness} years of service
         </p>
       </div>
 
@@ -24,24 +26,41 @@ export function AboutContent({ faqItems }: { faqItems: FaqItem[] }) {
       <div className="px-5 pt-6">
         <h2 className="font-display text-lg font-bold text-ink mb-4">Our Leadership</h2>
         <div className="space-y-3">
-          <LeaderCard name={CEO} title="Chief Executive Officer" desc={`Founded ${BRAND} in 1976 with a mission to make passport services affordable for every American.`} />
-          <LeaderCard name={COO} title={COO_TITLE} desc="Oversees daily operations and ensures every application meets our 99.8% success standard." />
+          <LeaderCard
+            name={CEO}
+            title="Founder & Chief Executive Officer"
+            desc={`Founded ${BRAND} in 1976 with a mission to make passport services affordable for every American. ${STATS.yearsInBusiness} years later, that mission continues.`}
+            imageSrc="/david-alwadish.jpeg"
+          />
+          <LeaderCard
+            name={COO}
+            title={COO_TITLE}
+            desc={`Oversees daily operations and ensures every application meets our ${STATS.successRate} success standard. Leads our expert Passport Review Team.`}
+            imageSrc="/antoinette-leon.jpg"
+          />
         </div>
       </div>
 
       {/* Founder Guarantee */}
       <div className="px-5 pt-8">
         <div className="bg-navy rounded-2xl p-5 text-center">
-          <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gold/20 flex items-center justify-center">
-            <span className="text-2xl">🤝</span>
+          <div className="w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden border-2 border-gold/40">
+            <Image src="/david-alwadish.jpeg" alt={CEO} width={64} height={64} className="object-cover w-full h-full" />
           </div>
           <h3 className="font-display text-lg font-bold text-white mb-2">The Founder&apos;s Guarantee</h3>
           <p className="text-sm text-white/80 leading-relaxed mb-2">
-            &ldquo;For nearly {YEARS_IN_BUSINESS} years, I&apos;ve personally stood behind every passport we process.
-            {GUARANTEE}. That&apos;s not just a policy — it&apos;s my word.&rdquo;
+            &ldquo;For {STATS.yearsInBusiness} years, I&apos;ve personally stood behind every passport we process.
+            {' '}{GUARANTEE}. That&apos;s not just a policy — it&apos;s my word.&rdquo;
           </p>
-          <p className="text-gold-soft text-sm font-semibold">— {CEO}, Founder & CEO</p>
+          <p className="text-gold-soft text-sm font-semibold">— {CEO}, Founder &amp; CEO</p>
         </div>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="px-5 pt-6">
+        <p className="text-[10px] text-ink/30 leading-relaxed text-center">
+          {STATS.disclaimer}
+        </p>
       </div>
 
       {/* FAQ */}
@@ -82,12 +101,12 @@ export function AboutContent({ faqItems }: { faqItems: FaqItem[] }) {
   );
 }
 
-function LeaderCard({ name, title, desc }: { name: string; title: string; desc: string }) {
+function LeaderCard({ name, title, desc, imageSrc }: { name: string; title: string; desc: string; imageSrc: string }) {
   return (
     <div className="bg-white rounded-2xl border border-line p-4 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-12 h-12 rounded-full bg-navy/10 flex items-center justify-center text-navy font-display font-bold text-lg">
-          {name.charAt(0)}
+        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-navy/10 flex-shrink-0">
+          <Image src={imageSrc} alt={name} width={56} height={56} className="object-cover w-full h-full" />
         </div>
         <div>
           <p className="text-sm font-bold text-ink">{name}</p>

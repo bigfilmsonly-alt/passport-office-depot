@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { CollapsibleSection } from './CollapsibleSection';
-import { GUARANTEE, PHONE, PHONE_TEL, YEARS_IN_BUSINESS, PRESS_MENTIONS } from '@/lib/constants';
+import { GUARANTEE, PHONE, PHONE_TEL, PRESS_MENTIONS } from '@/lib/constants';
+import { STATS } from '@/lib/stats';
 import { trackEvent } from '@/lib/track';
 import { useEffect, useRef, useState } from 'react';
 
@@ -31,7 +32,7 @@ export function HomeDropdowns() {
       </CollapsibleSection>
 
       {/* Reviews */}
-      <CollapsibleSection title="Customer Reviews (4.9/5)" icon="⭐">
+      <CollapsibleSection title={`${STATS.ratingDisplay}`} icon="⭐">
         <Reviews />
       </CollapsibleSection>
 
@@ -51,7 +52,7 @@ export function HomeDropdowns() {
       </CollapsibleSection>
 
       {/* Why Us */}
-      <CollapsibleSection title={`Why Choose Us (${YEARS_IN_BUSINESS} Years)`} icon="🏛️">
+      <CollapsibleSection title={`Why Choose Us (${STATS.foundedPhrase})`} icon="🏛️">
         <div className="grid grid-cols-2 gap-2.5">
           <Reason icon="💰" title="Lowest Prices" desc="From $59 — up to 75% less" />
           <Reason icon="📸" title="Free Photos" desc="Compliant photos included" />
@@ -168,7 +169,7 @@ function Reviews() {
           <p className="text-[10px] text-ink/40 mt-1 font-medium">{r.author} · {r.loc}</p>
         </div>
       ))}
-      <p className="text-center text-[11px] text-ink/40">50,000+ verified reviews</p>
+      <p className="text-center text-[11px] text-ink/40">{STATS.ratingDisplay}</p>
     </div>
   );
 }

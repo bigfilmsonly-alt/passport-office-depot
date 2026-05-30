@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { calculateQuote, formatPrice, recommendSpeed, getUrgencyMessage } from '@/lib/pricing';
 import type { ServiceType, SpeedType } from '@/lib/pricing';
 import { SERVICE_LABELS, SPEED_LABELS, TURNAROUND, GUARANTEE } from '@/lib/constants';
+import { STATS } from '@/lib/stats';
 import { trackEvent } from '@/lib/track';
 
 const SERVICES: { value: ServiceType; label: string; desc: string }[] = [
@@ -259,6 +260,11 @@ export function QuoteBuilder() {
             </div>
           </div>
         )}
+
+        {/* Disclaimer */}
+        <p className="text-[10px] text-ink/30 leading-relaxed text-center mt-6">
+          {STATS.disclaimer}
+        </p>
       </div>
     </div>
   );

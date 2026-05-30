@@ -1,30 +1,24 @@
-import { TRUST_BBB, TRUST_PAVAA, SUCCESS_RATE, RATING, REVIEW_COUNT } from '@/lib/constants';
+import { STATS } from '@/lib/stats';
 
 export function TrustBar() {
   return (
-    <div className="bg-paper-2 border-y border-line py-3 px-4 overflow-x-auto">
-      <div className="flex items-center justify-center gap-3 min-w-max">
-        <TrustItem icon="⭐" text={`${RATING} (${REVIEW_COUNT} reviews)`} />
-        <Divider />
-        <TrustItem icon="🛡️" text={TRUST_BBB} />
-        <Divider />
-        <TrustItem icon="✓" text={SUCCESS_RATE} />
-        <Divider />
-        <TrustItem icon="🏛️" text={TRUST_PAVAA} />
+    <div className="bg-paper-2 border-y border-line py-2.5 px-4">
+      <div className="grid grid-cols-4 gap-1 text-center">
+        <TrustItem icon="⭐" label={`${STATS.rating}/${STATS.ratingOutOf}`} sub="Rating" />
+        <TrustItem icon="🛡️" label="A+" sub="BBB" />
+        <TrustItem icon="✓" label={STATS.successRate} sub="Success" />
+        <TrustItem icon="🏛️" label="1976" sub="Founded" />
       </div>
     </div>
   );
 }
 
-function TrustItem({ icon, text }: { icon: string; text: string }) {
+function TrustItem({ icon, label, sub }: { icon: string; label: string; sub: string }) {
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex flex-col items-center">
       <span className="text-sm">{icon}</span>
-      <span className="text-[11px] font-semibold text-ink/70 whitespace-nowrap">{text}</span>
+      <span className="text-xs font-bold text-ink leading-tight">{label}</span>
+      <span className="text-[9px] text-ink/40 font-medium">{sub}</span>
     </div>
   );
-}
-
-function Divider() {
-  return <div className="w-px h-4 bg-line" />;
 }
