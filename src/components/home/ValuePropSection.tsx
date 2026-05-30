@@ -2,11 +2,7 @@ import Link from 'next/link';
 
 export function ValuePropSection() {
   return (
-    <section className="px-5 py-8">
-      <h2 className="font-display text-xl font-bold text-ink text-center mb-6">
-        Your Passport. Our Process.<br />Your Peace of Mind.
-      </h2>
-
+    <section className="px-5 py-6">
       <div className="grid grid-cols-3 gap-3">
         <PropCard
           href="/documents"
@@ -37,10 +33,6 @@ export function ValuePropSection() {
           title="Passport Photos"
         />
       </div>
-
-      <p className="text-center text-ink/50 text-xs mt-4 font-medium tracking-wide uppercase">
-        ★ Tap any service to get started ★
-      </p>
     </section>
   );
 }
@@ -49,12 +41,12 @@ function PropCard({ href, icon, title }: { href: string; icon: React.ReactNode; 
   return (
     <Link
       href={href}
-      className="flex flex-col items-center p-3 bg-white rounded-2xl border border-line shadow-sm active:scale-95 transition-transform"
+      className="flex flex-col items-center p-3 bg-white rounded-2xl border-2 border-gold shadow-md shadow-gold/20 active:scale-95 transition-transform ring-2 ring-gold/40 ring-offset-1"
     >
-      <div className="w-12 h-12 rounded-full bg-paper flex items-center justify-center mb-2">
+      <div className="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center mb-2">
         {icon}
       </div>
-      <p className="text-[11px] font-semibold text-ink text-center leading-tight">{title}</p>
+      <p className="text-[11px] font-bold text-ink text-center leading-tight">{title}</p>
     </Link>
   );
 }
